@@ -15,7 +15,7 @@ public class UserController {
 
     @PostMapping(value = "/log-in", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> postLogIn(@RequestBody User user, HttpSession session) {
-        logger.info("Log in attempt by \"{}\"", user.username);
+        logger.info("Logging in \"{}\"", user.username);
 
         User sessionUser = (User) session.getAttribute("user");
         if (sessionUser != null) {
@@ -31,5 +31,21 @@ public class UserController {
         else {
             return ResponseEntity.badRequest().body("Incorrect username or password.");
         }
+    }
+
+    @DeleteMapping("/log-out")
+    public ResponseEntity<?> deleteLogOut(HttpSession session) {
+        logger.info("Logging out");
+
+        User sessionUser = (User) session.getAttribute("user");
+        if (sessionUser != null) {
+            String username = sessionUser.username;
+            session.invalidate();
+            logger.info("Logged out \"{}\"", username);
+        }
+        else {
+            logger.info("There is no active session to delete.");
+        }
+        return ResponseEntity.noContent().build();
     }
 }
