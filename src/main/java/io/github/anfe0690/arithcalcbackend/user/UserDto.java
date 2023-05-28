@@ -2,7 +2,7 @@ package io.github.anfe0690.arithcalcbackend.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class User {
+public class UserDto {
 
     public String username;
 
@@ -10,4 +10,12 @@ public class User {
     public String password;
 
     public String name;
+
+    public UserDto() {
+    }
+
+    public UserDto(UserEntity entity) {
+        this.username = entity.getUsername();
+        this.name = entity.getName();
+    }
 }
