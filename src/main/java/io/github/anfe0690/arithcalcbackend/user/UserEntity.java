@@ -16,14 +16,17 @@ public class UserEntity {
 
     private String name;
 
+    private Status status;
+
     public UserEntity() {
     }
 
-    public UserEntity(Long id, String username, String passwordHash, String name) {
+    public UserEntity(Long id, String username, String passwordHash, String name, Status status) {
         this.id = id;
         this.username = username;
         this.passwordHash = passwordHash;
         this.name = name;
+        this.status = status;
     }
 
     public Long getId() {
@@ -56,5 +59,13 @@ public class UserEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

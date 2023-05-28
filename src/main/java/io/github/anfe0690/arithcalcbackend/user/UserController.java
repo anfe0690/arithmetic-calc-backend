@@ -9,9 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @RestController
+@RequestMapping("/v1")
 public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -29,10 +29,10 @@ public class UserController {
             return ResponseEntity.ok(sessionUser);
         }
         else {
-            List<UserEntity> list = userRepository.findByUsernameAndPasswordHash(user.username,
-                    Utils.getPasswordHash(user.password));
-            if (!list.isEmpty()) {
-                UserDto newUser = new UserDto(list.get(0));
+            UserEntity userEntity = userRepository.findByUsernameAndPasswordHashAndStatus(user.username,
+                    Utils.getPasswordHash(user.password), Status.ACTIVE);
+            if (userEntity != null) {
+                UserDto newUser = new UserDto(userEntity);
                 session.setAttribute("user", newUser);
                 logger.info("Logged in");
 
