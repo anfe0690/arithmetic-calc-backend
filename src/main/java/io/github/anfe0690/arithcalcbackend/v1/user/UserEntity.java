@@ -16,6 +16,7 @@ public class UserEntity {
 
     private String name;
 
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     public UserEntity() {
