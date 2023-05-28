@@ -1,4 +1,4 @@
-package io.github.anfe0690.arithcalcbackend.user;
+package io.github.anfe0690.arithcalcbackend.v1.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

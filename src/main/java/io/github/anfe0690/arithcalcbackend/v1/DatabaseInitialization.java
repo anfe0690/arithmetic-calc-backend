@@ -1,8 +1,9 @@
-package io.github.anfe0690.arithcalcbackend;
+package io.github.anfe0690.arithcalcbackend.v1;
 
-import io.github.anfe0690.arithcalcbackend.user.Status;
-import io.github.anfe0690.arithcalcbackend.user.UserEntity;
-import io.github.anfe0690.arithcalcbackend.user.UserRepository;
+import io.github.anfe0690.arithcalcbackend.Utils;
+import io.github.anfe0690.arithcalcbackend.v1.user.Status;
+import io.github.anfe0690.arithcalcbackend.v1.user.UserEntity;
+import io.github.anfe0690.arithcalcbackend.v1.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
