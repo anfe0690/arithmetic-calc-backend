@@ -19,15 +19,18 @@ public class UserEntity {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    private int balance;
+
     public UserEntity() {
     }
 
-    public UserEntity(Long id, String username, String passwordHash, String name, Status status) {
+    public UserEntity(Long id, String username, String passwordHash, String name, Status status, int balance) {
         this.id = id;
         this.username = username;
         this.passwordHash = passwordHash;
         this.name = name;
         this.status = status;
+        this.balance = balance;
     }
 
     public Long getId() {
@@ -68,5 +71,13 @@ public class UserEntity {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
     }
 }

@@ -9,6 +9,7 @@ public class OperationEntity {
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(unique = true)
     private Type type;
 
     private int cost;

@@ -11,15 +11,18 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("/v1")
 public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
+    public static final String LOG_IN_URL = "/v1/log-in";
+
+    public static final String LOG_OUT_URL = "/v1/log-out";
+
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping(value = "/log-in", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = LOG_IN_URL, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> postLogIn(@RequestBody UserDto user, HttpSession session) {
         logger.info("Logging in \"{}\"", user.username);
 
@@ -46,7 +49,7 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/log-out")
+    @DeleteMapping(LOG_OUT_URL)
     public ResponseEntity<?> deleteLogOut(HttpSession session) {
         logger.info("Logging out");
 

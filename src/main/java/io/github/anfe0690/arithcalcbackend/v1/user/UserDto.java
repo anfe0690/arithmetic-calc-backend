@@ -11,11 +11,14 @@ public class UserDto {
 
     public String name;
 
+    public int balance;
+
     public UserDto() {
     }
 
     public UserDto(UserEntity entity) {
         this.username = entity.getUsername();
         this.name = entity.getName();
+        this.balance = entity.getBalance();
     }
 }
