@@ -28,7 +28,7 @@ public class DatabaseInitialization implements ApplicationRunner {
         Optional<UserEntity> optional = userRepository.findById(1L);
         if (!optional.isPresent()) {
             UserEntity user = new UserEntity(1L, "admin@gmail.com", Utils.getPasswordHash("123456"), "Peter Parker",
-                    Status.ACTIVE, 100);
+                    Status.ACTIVE, 200);
             userRepository.save(user);
 
             for (int i = 1; i<= Type.values().length; i++) {
