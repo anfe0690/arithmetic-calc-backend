@@ -31,7 +31,7 @@ public class DatabaseInitialization implements ApplicationRunner {
                     Status.ACTIVE, 100);
             userRepository.save(user);
 
-            for (int i=1; i<=Type.values().length; i++) {
+            for (int i = 1; i<= Type.values().length; i++) {
                 OperationEntity operation = new OperationEntity((long) i, Type.values()[i-1], 10*i);
                 operationRepository.save(operation);
             }

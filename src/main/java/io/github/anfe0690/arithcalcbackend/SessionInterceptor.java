@@ -14,6 +14,16 @@ public class SessionInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        switch (request.getMethod()) {
+            case "GET":
+            case "POST":
+            case "PUT":
+            case "DELETE":
+                break;
+            default:
+                return true;
+        }
+
         if (request.getServletPath().equals(UserController.LOG_IN_URL)
                 || request.getServletPath().equals(UserController.LOG_OUT_URL)) {
             logger.info("No need to check the session for {}", request.getServletPath());
