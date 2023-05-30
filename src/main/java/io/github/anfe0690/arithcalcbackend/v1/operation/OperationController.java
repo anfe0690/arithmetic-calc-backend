@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,13 +32,7 @@ public class OperationController {
     }
 
     @PostMapping(value = "perform-operation", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> postPerformOperation(@RequestBody OperationDto operation) {
-        try {
-            String result = operationService.processOperation(operation.type, operation.firstOperand,
-                    operation.secondOperand);
-            return ResponseEntity.ok(result);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<?> postPerformOperation(@RequestBody OperationDto operation, HttpSession session) {
+        return operationService.performOperation(operation, session);
     }
 }

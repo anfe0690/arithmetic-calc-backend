@@ -1,6 +1,10 @@
 package io.github.anfe0690.arithcalcbackend.v1.operation;
 
+import org.springframework.http.ResponseEntity;
+
+import javax.servlet.http.HttpSession;
+
 public interface OperationService {
 
-    String processOperation(Type type, int firstOperand, int secondOperand);
+    ResponseEntity<?> performOperation(OperationDto operation, HttpSession session);
 }
