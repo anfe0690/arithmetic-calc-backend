@@ -1,5 +1,7 @@
 package io.github.anfe0690.arithcalcbackend.v1.record;
 
+import io.github.anfe0690.arithcalcbackend.v1.operation.Type;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +17,8 @@ public class RecordEntity {
 
     private long operationId;
 
+    private Type type;
+
     private long userId;
 
     private int amount;
@@ -28,8 +32,10 @@ public class RecordEntity {
     public RecordEntity() {
     }
 
-    public RecordEntity(long operationId, long userId, int amount, int userBalance, String operationResponse, Date date) {
+    public RecordEntity(long operationId, Type type, long userId, int amount, int userBalance, String operationResponse,
+                        Date date) {
         this.operationId = operationId;
+        this.type = type;
         this.userId = userId;
         this.amount = amount;
         this.userBalance = userBalance;
@@ -51,6 +57,14 @@ public class RecordEntity {
 
     public void setOperationId(long operationId) {
         this.operationId = operationId;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public long getUserId() {

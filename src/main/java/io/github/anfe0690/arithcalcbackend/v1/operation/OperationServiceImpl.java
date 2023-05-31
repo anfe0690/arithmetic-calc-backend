@@ -58,8 +58,8 @@ public class OperationServiceImpl implements OperationService {
             userRepository.save(userEntity);
             sessionUser.balance = userEntity.getBalance();
 
-            RecordEntity recordEntity = new RecordEntity(operationEntity.getId(), userEntity.getId(),
-                    operationEntity.getCost(), userEntity.getBalance(), result, new Date());
+            RecordEntity recordEntity = new RecordEntity(operationEntity.getId(), operationEntity.getType(),
+                    userEntity.getId(), operationEntity.getCost(), userEntity.getBalance(), result, new Date());
             recordRepository.save(recordEntity);
 
             return ResponseEntity.ok(new OperationResultDto(result, sessionUser.balance));
