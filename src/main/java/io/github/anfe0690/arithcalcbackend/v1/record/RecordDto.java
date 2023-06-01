@@ -6,7 +6,7 @@ public class RecordDto {
 
     public long id;
 
-    public Type type;
+    public String type;
 
     public int amount;
 
@@ -25,6 +25,6 @@ public class RecordDto {
         this.amount = entity.getAmount();
         this.balance = entity.getUserBalance();
         this.result = entity.getOperationResponse();
-        this.date = entity.getDate().toString();
+        this.date = entity.getDate();
     }
 }

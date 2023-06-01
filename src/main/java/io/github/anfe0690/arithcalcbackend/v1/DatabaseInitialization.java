@@ -45,9 +45,9 @@ public class DatabaseInitialization implements ApplicationRunner {
             }
 
             List<RecordEntity> list = new ArrayList<>();
-            list.add(new RecordEntity(1, Type.ADDITION, 1, 10, 90, "4", new Date()));
-            list.add(new RecordEntity(2, Type.SUBTRACTION, 1, 20, 70, "8", new Date()));
-            list.add(new RecordEntity(6, Type.RANDOM_STRING, 1, 60, 10, "QWERTY", new Date()));
+            list.add(new RecordEntity(1, Type.ADDITION.toString(), 1, 10, 90, "4", new Date().toString()));
+            list.add(new RecordEntity(2, Type.SUBTRACTION.toString(), 1, 20, 70, "8", new Date().toString()));
+            list.add(new RecordEntity(6, Type.RANDOM_STRING.toString(), 1, 60, 10, "QWERTY", new Date().toString()));
             for (RecordEntity recordEntity: list) {
                 recordRepository.save(recordEntity);
             }
