@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface RecordRepository extends PagingAndSortingRepository<RecordEntity, Long> {
 
-    List<RecordEntity> findByTypeContainingOrOperationResponseContainingOrDateContainingAllIgnoreCase(String type,
-            String operationResponse, String date, Pageable pageable);
+    List<RecordEntity> findByDeleted(boolean deleted, Pageable pageable);
+
+    List<RecordEntity> findByDeletedAndTypeContainingOrOperationResponseContainingOrDateContainingAllIgnoreCase(boolean deleted,
+            String type, String operationResponse, String date, Pageable pageable);
 }

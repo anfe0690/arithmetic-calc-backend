@@ -36,7 +36,7 @@ public class DatabaseInitialization implements ApplicationRunner {
         Optional<UserEntity> optional = userRepository.findById(1L);
         if (!optional.isPresent()) {
             UserEntity user = new UserEntity(1L, "admin@gmail.com", Utils.getPasswordHash("123456"), "Peter Parker",
-                    Status.ACTIVE, 200);
+                    Status.ACTIVE, 80);
             userRepository.save(user);
 
             for (int i = 1; i<= Type.values().length; i++) {
@@ -45,9 +45,10 @@ public class DatabaseInitialization implements ApplicationRunner {
             }
 
             List<RecordEntity> list = new ArrayList<>();
-            list.add(new RecordEntity(1, Type.ADDITION.toString(), 1, 10, 90, "4", new Date().toString()));
-            list.add(new RecordEntity(2, Type.SUBTRACTION.toString(), 1, 20, 70, "8", new Date().toString()));
-            list.add(new RecordEntity(6, Type.RANDOM_STRING.toString(), 1, 60, 10, "QWERTY", new Date().toString()));
+            list.add(new RecordEntity(1, Type.ADDITION.toString(), 1, 10, 190, "4", new Date().toString()));
+            list.add(new RecordEntity(2, Type.SUBTRACTION.toString(), 1, 20, 170, "8", new Date().toString()));
+            list.add(new RecordEntity(6, Type.RANDOM_STRING.toString(), 1, 60, 110, "QWERTY", new Date().toString()));
+            list.add(new RecordEntity(3, Type.MULTIPLICATION.toString(), 1, 30, 80, "34", new Date().toString(), true));
             for (RecordEntity recordEntity: list) {
                 recordRepository.save(recordEntity);
             }

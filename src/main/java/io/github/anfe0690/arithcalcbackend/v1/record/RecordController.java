@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -45,11 +45,19 @@ public class RecordController {
         }
 
         if (search == null || search.isEmpty()) {
-            return recordRepository.findAll(pageable).stream().map(RecordDto::new).collect(Collectors.toList());
+            return recordRepository.findByDeleted(false, pageable).stream().map(RecordDto::new)
+                    .collect(Collectors.toList());
         }
         else {
-            return recordRepository.findByTypeContainingOrOperationResponseContainingOrDateContainingAllIgnoreCase(search,
-                    search, search, pageable).stream().map(RecordDto::new).collect(Collectors.toList());
+            return recordRepository.findByDeletedAndTypeContainingOrOperationResponseContainingOrDateContainingAllIgnoreCase(false,
+                    search, search, search, pageable).stream().map(RecordDto::new).collect(Collectors.toList());
         }
+    }
+
+    @DeleteMapping(value = "records", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> deleteRecords(@RequestBody List<Long> ids) {
+        ids.stream().map(id -> recordRepository.findById(id)).filter(Optional::isPresent).map(Optional::get)
+                .forEach(e -> { e.setDeleted(true); recordRepository.save(e); });
+        return ResponseEntity.noContent().build();
     }
 }

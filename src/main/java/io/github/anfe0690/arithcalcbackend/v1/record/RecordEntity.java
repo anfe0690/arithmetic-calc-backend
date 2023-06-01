@@ -26,11 +26,13 @@ public class RecordEntity {
 
     private String date;
 
+    private boolean deleted;
+
     public RecordEntity() {
     }
 
-    public RecordEntity(long operationId, String type, long userId, int amount, int userBalance, String operationResponse,
-                        String date) {
+    public RecordEntity(long operationId, String type, long userId, int amount, int userBalance,
+                        String operationResponse, String date) {
         this.operationId = operationId;
         this.type = type;
         this.userId = userId;
@@ -38,6 +40,18 @@ public class RecordEntity {
         this.userBalance = userBalance;
         this.operationResponse = operationResponse;
         this.date = date;
+    }
+
+    public RecordEntity(long operationId, String type, long userId, int amount, int userBalance,
+                        String operationResponse, String date, boolean deleted) {
+        this.operationId = operationId;
+        this.type = type;
+        this.userId = userId;
+        this.amount = amount;
+        this.userBalance = userBalance;
+        this.operationResponse = operationResponse;
+        this.date = date;
+        this.deleted = deleted;
     }
 
     public Long getId() {
@@ -102,5 +116,13 @@ public class RecordEntity {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }
