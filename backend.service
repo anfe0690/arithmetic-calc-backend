@@ -1,0 +1,10 @@
+[Unit]
+Description=Backend
+
+[Service]
+ExecStart=/usr/bin/java -Dfrontend.host="http://%i:3000" -jar /home/ubuntu/arithmetic-calculator-backend-1.0-SNAPSHOT.jar
+Restart=always
+WorkingDirectory=/home/ubuntu
+
+[Install]
+WantedBy=multi-user.target
