@@ -72,7 +72,7 @@ public class OperationServiceImpl implements OperationService {
         }
     }
 
-    private String performOperation(Type type, int firstOperand, int secondOperand) throws IOException {
+    String performOperation(Type type, int firstOperand, int secondOperand) throws IOException {
         switch (type) {
             case ADDITION:
                 return Integer.toString(firstOperand + secondOperand);
@@ -91,7 +91,7 @@ public class OperationServiceImpl implements OperationService {
         }
     }
 
-    private String generateRandomString() throws IOException {
+    String generateRandomString() throws IOException {
         try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
             ClassicHttpRequest httpGet = ClassicRequestBuilder.get("https://www.random.org/strings/")
                     .addParameter("num", "1")
